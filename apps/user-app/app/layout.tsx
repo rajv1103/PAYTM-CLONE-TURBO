@@ -1,7 +1,9 @@
+// user-app/app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "../provider";
+
 import { AppbarClient } from "../components/AppbarClient";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,17 +17,20 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   return (
     <html lang="en">
-      <Providers>
-        <body className={inter.className}>
-          <div className="min-w-screen min-h-screen bg-[#ebe6e6]">
-            <AppbarClient />
-            {children}
+      <body className={`${inter.className} dark:bg-zinc-900`}>
+        <Providers>
+          <div className="flex min-h-screen">
+           
+            <div className="flex-1 flex flex-col">
+              <AppbarClient />
+              <main className="p-4">{children}</main>
+            </div>
           </div>
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }
